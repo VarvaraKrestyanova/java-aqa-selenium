@@ -1,6 +1,8 @@
 package jUnit;
 
+import org.junit.After;
 import org.junit.Rule;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,6 +79,11 @@ class JsonParserTest {
     @AfterEach
     public void afterTest() {
         softAssert.assertAll();
+    }
+
+    @AfterAll
+    public static void deleteTestFile() {
+        new File("src/main/resources/testCart.json").delete();
     }
 
 }
