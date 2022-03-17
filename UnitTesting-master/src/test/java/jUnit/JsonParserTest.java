@@ -1,14 +1,11 @@
 package jUnit;
 
-import org.junit.After;
-import org.junit.Rule;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.rules.ExpectedException;
 import org.testng.asserts.SoftAssert;
 import parser.JsonParser;
 import parser.NoSuchFileException;
@@ -17,8 +14,6 @@ import shop.RealItem;
 import shop.VirtualItem;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,7 +30,7 @@ class JsonParserTest {
         RealItem car = new RealItem();
         car.setName("Audi");
         car.setPrice(32026.9);
-        car.setWeight(1560);
+        car.setWeight(1560.0);
         cart.addRealItem(car);
 
         VirtualItem disk = new VirtualItem();
