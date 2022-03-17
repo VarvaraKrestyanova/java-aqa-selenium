@@ -6,6 +6,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.rules.ExpectedException;
 import org.testng.asserts.SoftAssert;
 import parser.JsonParser;
@@ -57,23 +59,13 @@ class JsonParserTest {
         softAssert.assertEquals(cartUnderTheTestName, cartUnderTheTest.getCartName());
     }
 
-    @Test
-    public void expectedExceptionTest() {
-
-        List<String> wrongFileNames = new ArrayList<>();
-        wrongFileNames.add("wrongName");
-        wrongFileNames.add("andrew-cat");
-        wrongFileNames.add("eugen-cartjson");
-        wrongFileNames.add(" ");
-        wrongFileNames.add("json");
-
-        for (String wrongFileName : wrongFileNames) {
-            Exception exception = assertThrows(NoSuchFileException.class, () -> {
-                jsonParser.readFromFile(new File("src/main/resources/" + wrongFileName));
-            });
-            softAssert.assertTrue(exception.getMessage().contentEquals("File src\\main\\resources\\" + wrongFileName + ".json not found!"));
-        }
-
+    @ParameterizedTest
+    @ValueSource(strings = {"wrongName.json", "andrew-cat.json", "eugen-cartjson", " ", "json"})
+    public void expectedExceptionTest(String wrongFileName) {
+        Exception exception = assertThrows(NoSuchFileException.class, () -> {
+            jsonParser.readFromFile(new File("src/main/resources/" + wrongFileName));
+        });
+        softAssert.assertTrue(exception.getMessage().contentEquals("File src\\main\\resources\\" + wrongFileName + ".json not found!"));
     }
 
     @AfterEach
