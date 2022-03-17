@@ -1,9 +1,6 @@
 package jUnit;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.testng.asserts.SoftAssert;
@@ -54,6 +51,7 @@ class JsonParserTest {
         softAssert.assertEquals(cartUnderTheTestName, cartUnderTheTest.getCartName());
     }
 
+    @Disabled
     @ParameterizedTest
     @ValueSource(strings = {"wrongName.json", "andrew-cat.json", "eugen-cartjson", " ", "json"})
     public void expectedExceptionTest(String wrongFileName) {
