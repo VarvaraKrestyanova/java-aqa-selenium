@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RealItemTest {
 
-    RealItem car = new RealItem();
+    private final RealItem car = new RealItem();
 
     @Test
     void toStringTest() {

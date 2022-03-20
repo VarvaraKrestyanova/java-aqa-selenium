@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VirtualItemTest {
 
-    VirtualItem virtualItem = new VirtualItem();
+    private final VirtualItem virtualItem = new VirtualItem();
 
     @Test
     void toStringTest() {
