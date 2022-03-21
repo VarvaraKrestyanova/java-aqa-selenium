@@ -65,8 +65,10 @@ class JsonParserTest {
         bw.write(gson.toJson(cart2));
         bw.close();
         Cart cartUnderTheTest = jsonParser.readFromFile(new File("src/main/resources/" + funnyCartName2 + ".json"));
-        assertEquals(cart.getTotalPrice(), cartUnderTheTest.getTotalPrice());
-        assertEquals(funnyCartName2, cartUnderTheTest.getCartName());
+        assertAll("Read File Test",
+                () -> assertEquals(cart.getTotalPrice(), cartUnderTheTest.getTotalPrice()),
+                () -> assertEquals(funnyCartName2, cartUnderTheTest.getCartName())
+        );
     }
 
     @Disabled

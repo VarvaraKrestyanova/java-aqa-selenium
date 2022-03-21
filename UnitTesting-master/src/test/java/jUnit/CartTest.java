@@ -40,18 +40,22 @@ class CartTest {
         cart.deleteRealItem(car);
         System.setOut(new PrintStream(output));
         cart.showItems();
-        assertEquals("Class: class shop.VirtualItem; Name: Windows; Price: 11.0; Size on disk: 20000.0\r\n", output.toString());
-        double expectedTotal = (disk.getPrice() + disk.getPrice() * 0.2) + (car.getPrice() + car.getPrice() * 0.2);
-        assertEquals(expectedTotal, cart.getTotalPrice());
+        double expectedTotal = (disk.getPrice() + disk.getPrice() * 0.2);
+        assertAll("Cart With Removed Item",
+                () -> assertEquals("Class: class shop.VirtualItem; Name: Windows; Price: 11.0; Size on disk: 20000.0\r\n", output.toString()),
+                () -> assertEquals(expectedTotal, cart.getTotalPrice())
+        );
     }
 
     @Test
     void showItemsTest() {
         System.setOut(new PrintStream(output));
         cart.showItems();
-        assertEquals("Class: class shop.RealItem; Name: Audi; Price: 32026.9; Weight: 1560.0\r\nClass: class shop.VirtualItem; Name: Windows; Price: 11.0; Size on disk: 20000.0\r\n", output.toString());
         double expectedTotal = (disk.getPrice() + disk.getPrice() * 0.2) + (car.getPrice() + car.getPrice() * 0.2);
-        assertEquals(expectedTotal, cart.getTotalPrice());
+        assertAll("Cart Items",
+                () -> assertEquals("Class: class shop.RealItem; Name: Audi; Price: 32026.9; Weight: 1560.0\r\nClass: class shop.VirtualItem; Name: Windows; Price: 11.0; Size on disk: 20000.0\r\n", output.toString()),
+                () -> assertEquals(expectedTotal, cart.getTotalPrice())
+        );
     }
 
 
