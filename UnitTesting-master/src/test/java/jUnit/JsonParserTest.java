@@ -48,7 +48,7 @@ class JsonParserTest {
         jsonParser.writeToFile(cart);
         File file = new File("src/main/resources/" + cart.getCartName() + ".json");
 
-        String expectedJsonLine = "{\"cartName\":\"" + funnyCartName + "\",\"realItems\":[{\"weight\":1560.0,\"name\":\"Audi\",\"price\":32026.9}],\"virtualItems\":[{\"sizeOnDisk\":20000.0,\"name\":\"Windows\",\"price\":11.0}],\"total\":38445.479999999996}";
+        String expectedJsonLine = gson.toJson(cart);
         BufferedReader br = new BufferedReader(new FileReader("src/main/resources/" + cart.getCartName() + ".json"));
         String actualJsonLine = br.readLine();
 
