@@ -9,8 +9,8 @@ public class RealItemTestNG {
 
     private final RealItem car = new RealItem();
 
-    @Test
-    public void testTestToString() {
+    @Test(groups = {"items"})
+    public void testToString() {
         double weightUnderTheTest = 1400.5;
         car.setWeight(weightUnderTheTest);
         assertEquals(car.toString(), "Class: class shop.RealItem; Name: null; Price: 0.0; Weight: 1400.5");

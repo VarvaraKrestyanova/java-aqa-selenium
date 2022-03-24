@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Cart Test Suite">
+    <test name="Delete Virtual Item Test">
+        <classes>
+            <class name="testNG.CartTestNG">
+                <methods>
+                    <include name="testDeleteVirtualItem"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Show Items Test">
+        <classes>
+            <class name="testNG.CartTestNG">
+                <methods>
+                    <include name="testShowItems"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
