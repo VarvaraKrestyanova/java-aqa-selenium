@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Json Parser Test Suite">
+    <test name="Write To File Test">
+        <classes>
+            <class name="testNG.JsonParserTestNG">
+                <methods>
+                    <include name="testWriteToFile"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Read From File Test">
+        <classes>
+            <class name="testNG.JsonParserTestNG">
+                <methods>
+                    <include name="testReadFromFile"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Expected Exception Test 1">
+        <parameter name="wrongNameKey" value="wrongName.json"/>
+        <classes>
+            <class name="testNG.JsonParserTestNG">
+                <methods>
+                    <include name="testExpectedException"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Expected Exception Test 2">
+        <parameter name="wrongNameKey" value="andrew-cat.json"/>
+        <classes>
+            <class name="testNG.JsonParserTestNG">
+                <methods>
+                    <include name="testExpectedException"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Expected Exception Test 3">
+        <parameter name="wrongNameKey" value="eugen-cartjson"/>
+        <classes>
+            <class name="testNG.JsonParserTestNG">
+                <methods>
+                    <include name="testExpectedException"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Expected Exception Test 4">
+        <parameter name="wrongNameKey" value=" "/>
+        <classes>
+            <class name="testNG.JsonParserTestNG">
+                <methods>
+                    <include name="testExpectedException"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Expected Exception Test 5">
+        <parameter name="wrongNameKey" value="json"/>
+        <classes>
+            <class name="testNG.JsonParserTestNG">
+                <methods>
+                    <include name="testExpectedException"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

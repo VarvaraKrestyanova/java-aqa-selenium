@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Items Test Suite">
+    <test name="Items Test">
+        <groups>
+            <run>
+                <include name="items"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="testNG.RealItemTestNG"/>
+            <class name="testNG.VirtualItemTestNG"/>
+            <class name="testNG.JsonParserTestNG"/>
+            <class name="testNG.CartTestNG"/>
+        </classes>
+    </test>
+</suite>
