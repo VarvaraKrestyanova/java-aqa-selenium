@@ -13,13 +13,13 @@ import java.io.*;
 
 public class CartTestNG {
 
-    private static final Faker faker = new Faker();
-    public static String cartForTestName = faker.business().creditCardNumber();
+    private final Faker faker = new Faker();
+    private String cartForTestName = faker.business().creditCardNumber();
     private final Cart cart = new Cart(cartForTestName);
     private final RealItem car = new RealItem();
     private final VirtualItem disk = new VirtualItem();
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    SoftAssert softAssert = new SoftAssert();
+    private SoftAssert softAssert = new SoftAssert();
 
 
     @BeforeMethod

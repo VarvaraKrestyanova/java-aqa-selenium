@@ -20,27 +20,24 @@ public class JsonParserTestNG {
     private final JsonParser jsonParser = new JsonParser();
 
     private static final Faker faker = new Faker();
-    private static final String funnyCartName = faker.funnyName().name();
-    private static final String funnyCartName2 = faker.funnyName().name();
-    private final Cart cart = new Cart(funnyCartName);
-    private final Cart cart2 = new Cart(funnyCartName2);
+    private String funnyCartName;
+    private Cart cart;
     private final Gson gson = new Gson();
 
     @BeforeMethod
     public void beforeTest() {
+        cart = new Cart(funnyCartName);
         RealItem car = new RealItem();
         car.setName("Audi");
         car.setPrice(32026.9);
         car.setWeight(1560.0);
         cart.addRealItem(car);
-        cart2.addRealItem(car);
 
         VirtualItem disk = new VirtualItem();
         disk.setName("Windows");
         disk.setPrice(11);
         disk.setSizeOnDisk(20000);
         cart.addVirtualItem(disk);
-        cart2.addVirtualItem(disk);
     }
 
     @Test
@@ -59,12 +56,12 @@ public class JsonParserTestNG {
 
     @Test(enabled = false)
     public void testReadFromFile() throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/" + funnyCartName2 + ".json"));
-        bw.write(gson.toJson(cart2));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/" + funnyCartName + ".json"));
+        bw.write(gson.toJson(cart));
         bw.close();
-        Cart cartUnderTheTest = jsonParser.readFromFile(new File("src/main/resources/" + funnyCartName2 + ".json"));
+        Cart cartUnderTheTest = jsonParser.readFromFile(new File("src/main/resources/" + funnyCartName + ".json"));
         assertEquals(cart.getTotalPrice(), cartUnderTheTest.getTotalPrice());
-        assertEquals(funnyCartName2, cartUnderTheTest.getCartName());
+        assertEquals(funnyCartName, cartUnderTheTest.getCartName());
     }
 
     @Parameters("wrongNameKey")
