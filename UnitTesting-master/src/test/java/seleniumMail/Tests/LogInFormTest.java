@@ -8,6 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import seleniumMail.Helpers.PropertiesUtil;
 import seleniumMail.Pages.InboxPage;
 import seleniumMail.Pages.LoginPage;
+
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LogInFormTest {
@@ -25,6 +28,7 @@ public class LogInFormTest {
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @Test

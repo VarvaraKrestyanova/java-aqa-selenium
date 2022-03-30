@@ -14,7 +14,6 @@ public class InboxPage {
 
     public InboxPage(WebDriver driver) {
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public boolean isRightBoxListDisplayed() {
