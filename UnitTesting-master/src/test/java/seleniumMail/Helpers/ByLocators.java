@@ -13,5 +13,7 @@ public class ByLocators {
     private static By authForm = By.tagName("form");
     private static By forgotPasswordLink = By.linkText("Forgot your password?");
     private static By inputFieldOnAuthForm = By.id("passp-field-login");
+    private static By learnMoreLink = By.partialLinkText("more");
+    private static By cleanBth = By.name("clean");
 
 }
