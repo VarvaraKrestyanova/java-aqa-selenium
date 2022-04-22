@@ -28,7 +28,7 @@ public class InboxPage {
     }
 
     public InboxPage waitForUsername() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(username));
         return new InboxPage(driver);
     }

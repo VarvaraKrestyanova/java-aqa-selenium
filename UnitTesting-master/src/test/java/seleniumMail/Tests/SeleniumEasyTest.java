@@ -95,7 +95,7 @@ public class SeleniumEasyTest {
         driver.navigate().to(bootstrapDemoUrl);
         SeleniumEasyBootstrapDemoPage seleniumEasyBootstrapDemoPage = new SeleniumEasyBootstrapDemoPage(driver);
         seleniumEasyBootstrapDemoPage.download();
-        seleniumEasyBootstrapDemoPage.waitForDownloadLimit(50);
+        assertTrue(seleniumEasyBootstrapDemoPage.waitForDownloadLimitAndCheckLimit(50), "Percentage limit is not >= 50");
         seleniumEasyBootstrapDemoPage.refreshPage();
         assertEquals(seleniumEasyBootstrapDemoPage.getLoadingPercentage(), 0, "Page is not refreshed");
     }
@@ -117,8 +117,7 @@ public class SeleniumEasyTest {
 
         List<User> actualUsers = seleniumEasyTableDemoPage.getCustomObjectsOnAllPages(60, 500000);
 
-        assertEquals(actualUsers.size(), expectedUsers.size(), "Users number is wrong");
-        assertEquals(expectedUsers.toString(), actualUsers.toString());
+        assertEquals(expectedUsers.toString(), actualUsers.toString(), "Filtered users are wrong");
     }
 
     @AfterEach

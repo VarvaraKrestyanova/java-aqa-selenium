@@ -23,11 +23,11 @@ public class SeleniumEasyBootstrapDemoPage {
         return this;
     }
 
-    public SeleniumEasyBootstrapDemoPage waitForDownloadLimit(int limit) {
+    public boolean waitForDownloadLimitAndCheckLimit(int limit) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         wait.pollingEvery(Duration.ofMillis(10));
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(loadingPercentage), limit + "%"));
-        return this;
+        return getLoadingPercentage() >= limit;
     }
 
     public int getLoadingPercentage() {

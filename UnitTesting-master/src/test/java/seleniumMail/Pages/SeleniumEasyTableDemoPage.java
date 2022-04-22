@@ -35,13 +35,14 @@ public class SeleniumEasyTableDemoPage {
     public List<User> getCustomObjects(int startAge, int maxSalary) {
         List<User> users = new ArrayList<>();
         List<WebElement> tableRows = driver.findElements(tableRow);
+        WebElement tableBlock = driver.findElement(By.xpath("//tbody"));
         for (WebElement tableRow: tableRows) {
             int index = tableRows.indexOf(tableRow) + 1;
-            String name = driver.findElement(By.xpath(String.format("//tbody//tr[%d]//td[1]", index))).getText();
-            String position = driver.findElement(By.xpath(String.format("//tbody//tr[%d]//td[2]", index))).getText();
-            String office = driver.findElement(By.xpath(String.format("//tbody//tr[%d]//td[3]", index))).getText();
-            int age = Integer.parseInt(driver.findElement(By.xpath(String.format("//tbody//tr[%d]//td[4]", index))).getText());
-            String salaryString = driver.findElement(By.xpath(String.format("//tbody//tr[%d]//td[6]", index))).getText()
+            String name = tableBlock.findElement(By.xpath(String.format(".//tr[%d]//td[1]", index))).getText();
+            String position = tableBlock.findElement(By.xpath(String.format(".//tr[%d]//td[2]", index))).getText();
+            String office = tableBlock.findElement(By.xpath(String.format(".//tr[%d]//td[3]", index))).getText();
+            int age = Integer.parseInt(tableBlock.findElement(By.xpath(String.format(".//tr[%d]//td[4]", index))).getText());
+            String salaryString = tableBlock.findElement(By.xpath(String.format(".//tr[%d]//td[6]", index))).getText()
                     .replace("$", "")
                     .replace(",", "")
                     .replace("/y", "");

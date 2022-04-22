@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class SeleniumEasyDropdownDemoPage {
 
@@ -58,11 +59,7 @@ public class SeleniumEasyDropdownDemoPage {
     }
 
    public List<String> getSelectedStates() {
-        List<String> states = new ArrayList<>();
-        for (WebElement selectedState: selector.getAllSelectedOptions()) {
-            states.add(selectedState.getText());
-        }
-        return states;
+       return selector.getAllSelectedOptions().stream().map(WebElement::getText).collect(Collectors.toList());
    }
 
 }
