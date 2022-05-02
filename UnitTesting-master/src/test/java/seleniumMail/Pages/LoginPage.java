@@ -2,13 +2,19 @@ package seleniumMail.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
 
 public class LoginPage {
 
-    private static By logInBtn = By.cssSelector(".button2_theme_mail-white");
+    @FindBy(css = ".button2_theme_mail-white")
+    WebElement logInBtn;
+    @FindBy(xpath = "//span[@class='WelcomePage-tagline']")
+    WebElement welcomeLoginText;
     private static By loginField = By.cssSelector("#passp-field-login");
     private static By logInBtnOnForm = By.xpath("//button[@id='passp:sign-in']");
     private static By passwordField = By.cssSelector("#passp-field-passwd");
@@ -17,6 +23,7 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public LoginPage fillLogInForm(String username, String password) {
@@ -27,7 +34,7 @@ public class LoginPage {
     }
 
     public LoginPage logIn(String username, String password) {
-        driver.findElement(logInBtn).click();
+        logInBtn.click();
         fillLogInForm(username, password);
         driver.findElement(logInBtnOnForm).click();
         return new LoginPage(driver);
@@ -35,7 +42,7 @@ public class LoginPage {
 
     public boolean isLoginPageOpened() {
         try {
-            return driver.findElement(logInBtn).isDisplayed();
+            return welcomeLoginText.isDisplayed();
         } catch (NoSuchElementException exception) {
             return false;
         }

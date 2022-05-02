@@ -2,6 +2,9 @@ package seleniumMail.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,13 +15,18 @@ public class InboxPage {
 
     private static By rightBoxList = By.cssSelector(".ns-view-right-box");
     private static By username = By.cssSelector(".b-user");
-    private static By userIcon = By.cssSelector(".user-account_left-name");
-    private static By logoutBtn = By.xpath("//span[.='Log out']");
+
+    @FindBy(css = ".user-account_left-name")
+    WebElement userIcon;
+
+    @FindBy(xpath = "//span[.='Log out']")
+    WebElement logoutBtn;
 
     private static WebDriver driver;
 
     public InboxPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public boolean isRightBoxListDisplayed() {
@@ -36,8 +44,8 @@ public class InboxPage {
     }
 
     public InboxPage logoutFromInboxPage() {
-        driver.findElement(userIcon).click();
-        driver.findElement(logoutBtn).click();
+        userIcon.click();
+        logoutBtn.click();
         return new InboxPage(driver);
     }
 
