@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.NoSuchElementException;
+
 public class LoginPage {
 
     private static By logInBtn = By.cssSelector(".button2_theme_mail-white");
@@ -29,6 +31,14 @@ public class LoginPage {
         fillLogInForm(username, password);
         driver.findElement(logInBtnOnForm).click();
         return new LoginPage(driver);
+    }
+
+    public boolean isLoginPageOpened() {
+        try {
+            return driver.findElement(logInBtn).isDisplayed();
+        } catch (NoSuchElementException exception) {
+            return false;
+        }
     }
 
 }
