@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 public class LoginPage {
 
     private static By logInBtn = By.cssSelector(".button2_theme_mail-white");
+    private static By welcomeLoginText = By.xpath("//span[@class='WelcomePage-tagline']");
     private static By loginField = By.cssSelector("#passp-field-login");
     private static By logInBtnOnForm = By.xpath("//button[@id='passp:sign-in']");
     private static By passwordField = By.cssSelector("#passp-field-passwd");
@@ -35,7 +36,7 @@ public class LoginPage {
 
     public boolean isLoginPageOpened() {
         try {
-            return driver.findElement(logInBtn).isDisplayed();
+            return driver.findElement(welcomeLoginText).isDisplayed();
         } catch (NoSuchElementException exception) {
             return false;
         }
