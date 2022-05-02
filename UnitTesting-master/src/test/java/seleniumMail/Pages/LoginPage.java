@@ -15,9 +15,15 @@ public class LoginPage {
     WebElement logInBtn;
     @FindBy(xpath = "//span[@class='WelcomePage-tagline']")
     WebElement welcomeLoginText;
-    private static By loginField = By.cssSelector("#passp-field-login");
-    private static By logInBtnOnForm = By.xpath("//button[@id='passp:sign-in']");
-    private static By passwordField = By.cssSelector("#passp-field-passwd");
+
+    @FindBy(css = "#passp-field-login")
+    WebElement loginField;
+
+    @FindBy(xpath = "//button[@id='passp:sign-in']")
+    WebElement logInBtnOnForm;
+
+    @FindBy(css = "#passp-field-passwd")
+    WebElement passwordField;
 
     private static WebDriver driver;
 
@@ -27,16 +33,16 @@ public class LoginPage {
     }
 
     public LoginPage fillLogInForm(String username, String password) {
-        driver.findElement(loginField).sendKeys(username);
-        driver.findElement(logInBtnOnForm).click();
-        driver.findElement(passwordField).sendKeys(password);
+        loginField.sendKeys(username);
+        logInBtnOnForm.click();
+        passwordField.sendKeys(password);
         return new LoginPage(driver);
     }
 
     public LoginPage logIn(String username, String password) {
         logInBtn.click();
         fillLogInForm(username, password);
-        driver.findElement(logInBtnOnForm).click();
+        logInBtnOnForm.click();
         return new LoginPage(driver);
     }
 

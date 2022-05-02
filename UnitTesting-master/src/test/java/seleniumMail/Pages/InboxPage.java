@@ -13,8 +13,11 @@ import java.util.NoSuchElementException;
 
 public class InboxPage {
 
-    private static By rightBoxList = By.cssSelector(".ns-view-right-box");
-    private static By username = By.cssSelector(".b-user");
+    @FindBy(css = ".ns-view-right-box")
+    WebElement rightBoxList;
+
+    @FindBy(css = ".b-user")
+    WebElement username;
 
     @FindBy(css = ".user-account_left-name")
     WebElement userIcon;
@@ -31,7 +34,7 @@ public class InboxPage {
 
     public boolean isRightBoxListDisplayed() {
         try {
-            return driver.findElement(rightBoxList).isDisplayed();
+            return rightBoxList.isDisplayed();
         } catch (NoSuchElementException exception) {
             return false;
         }
@@ -39,7 +42,7 @@ public class InboxPage {
 
     public InboxPage waitForUsername() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(1500));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(username));
+        wait.until(ExpectedConditions.visibilityOf(username));
         return new InboxPage(driver);
     }
 
