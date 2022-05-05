@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import seleniumMail.Helpers.WebDriverSingleton;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;
@@ -17,8 +18,8 @@ public class InboxPage {
 
     private static WebDriver driver;
 
-    public InboxPage(WebDriver driver) {
-        this.driver = driver;
+    public InboxPage() {
+        this.driver = WebDriverSingleton.getInstance().getDriver();
     }
 
     public boolean isRightBoxListDisplayed() {
@@ -35,10 +36,10 @@ public class InboxPage {
         return new InboxPage(driver);
     }
 
-    public InboxPage logoutFromInboxPage() {
+    public LoginPage logoutFromInboxPage() {
         driver.findElement(userIcon).click();
         driver.findElement(logoutBtn).click();
-        return new InboxPage(driver);
+        return new LoginPage();
     }
 
 }

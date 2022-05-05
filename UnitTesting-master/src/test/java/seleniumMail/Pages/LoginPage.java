@@ -2,7 +2,7 @@ package seleniumMail.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import seleniumMail.Helpers.WebDriverSingleton;
 
 import java.util.NoSuchElementException;
 
@@ -16,22 +16,22 @@ public class LoginPage {
 
     private static WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    public LoginPage() {
+        this.driver = WebDriverSingleton.getInstance().getDriver();
     }
 
     public LoginPage fillLogInForm(String username, String password) {
         driver.findElement(loginField).sendKeys(username);
         driver.findElement(logInBtnOnForm).click();
         driver.findElement(passwordField).sendKeys(password);
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 
-    public LoginPage logIn(String username, String password) {
+    public InboxPage logIn(String username, String password) {
         driver.findElement(logInBtn).click();
         fillLogInForm(username, password);
         driver.findElement(logInBtnOnForm).click();
-        return new LoginPage(driver);
+        return new InboxPage();
     }
 
     public boolean isLoginPageOpened() {
@@ -40,6 +40,10 @@ public class LoginPage {
         } catch (NoSuchElementException exception) {
             return false;
         }
+    }
+
+    public void goToUrl(String url) {
+        driver.navigate().to(url);
     }
 
 }
