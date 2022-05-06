@@ -22,7 +22,6 @@ public class YandexMailTest {
     @Test
     public void logInTest() {
         LoginPage loginPage = new LoginPage();
-        loginPage.goToUrl(url);
         loginPage.logIn(user, password);
         InboxPage inboxPage = new InboxPage();
         assertTrue(inboxPage.isRightBoxListDisplayed(), "Login with correct credentials failed as inbox does not display!");
@@ -31,7 +30,6 @@ public class YandexMailTest {
     @Test
     public void logOutTest() {
         LoginPage loginPage = new LoginPage();
-        loginPage.goToUrl(url);
         loginPage.logIn(user, password);
         InboxPage inboxPage = new InboxPage();
         inboxPage.logoutFromInboxPage();

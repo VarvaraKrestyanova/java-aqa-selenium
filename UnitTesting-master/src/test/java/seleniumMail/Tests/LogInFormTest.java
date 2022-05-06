@@ -24,18 +24,15 @@ public class LogInFormTest {
     private static final String PASSWORD = "password1";
     private static final String USERNAME2 = "user2";
     private static final String PASSWORD2 = "password2";
-    private static final String YANDEX_MAIL_URL = "mail.url";
 
     private static String user = PropertiesUtil.get(USERNAME);
     private static String password = PropertiesUtil.get(PASSWORD);
     private static String user2 = PropertiesUtil.get(USERNAME2);
     private static String password2 = PropertiesUtil.get(PASSWORD2);
-    private static String url = PropertiesUtil.get(YANDEX_MAIL_URL);
 
     @Test
     public void logInTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage();
-        loginPage.goToUrl(url);
         loginPage.logIn(user, password);
         Thread.sleep(1000); //Explicit Wait type
         InboxPage inboxPage = new InboxPage();
@@ -52,7 +49,6 @@ public class LogInFormTest {
     @MethodSource
     public void logInWithDifferentUsers(String name, String pwd) {
         LoginPage loginPage = new LoginPage();
-        loginPage.goToUrl(url);
         loginPage.logIn(name, pwd);
         InboxPage inboxPage = new InboxPage();
         inboxPage.waitForUsername();
