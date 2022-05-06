@@ -13,16 +13,16 @@ public class YandexMailTest {
 
     private static final String USERNAME = "user1";
     private static final String PASSWORD = "password1";
-    private static final String YANDEX_MAIL_URL = "mail.url";
+    private static final String SCREENSHOT_PATH = "screenshots.path";
 
     private static String user = PropertiesUtil.get(USERNAME);
     private static String password = PropertiesUtil.get(PASSWORD);
-    private static String url = PropertiesUtil.get(YANDEX_MAIL_URL);
+    private static String screenshotPath = PropertiesUtil.get(SCREENSHOT_PATH);
 
     @Test
     public void logInTest() {
         LoginPage loginPage = new LoginPage();
-        loginPage.logIn(user, password);
+        loginPage.logIn(user, password, screenshotPath, "testVar");
         InboxPage inboxPage = new InboxPage();
         assertTrue(inboxPage.isRightBoxListDisplayed(), "Login with correct credentials failed as inbox does not display!");
     }

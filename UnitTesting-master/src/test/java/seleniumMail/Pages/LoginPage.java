@@ -1,10 +1,16 @@
 package seleniumMail.Pages;
 
+import com.github.javafaker.Faker;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import seleniumMail.Helpers.WebDriverSingleton;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class LoginPage {
@@ -44,11 +50,32 @@ public class LoginPage {
         return new InboxPage();
     }
 
+    //created additional same method with screenshot so that user has the ability which type of constructor he needs
+    //and not to change the call to the method in other parts of the code
+    public InboxPage logIn(String username, String password, String screenshotPath, String screenshotName) {
+        driver.navigate().to("https://mail.yandex.com/");
+        takeScreenshot(screenshotPath, screenshotName);
+        logInBtn.click();
+        fillLogInForm(username, password);
+        logInBtnOnForm.click();
+        return new InboxPage();
+    }
+
     public boolean isLoginPageOpened() {
         try {
             return welcomeLoginText.isDisplayed();
         } catch (NoSuchElementException exception) {
             return false;
+        }
+    }
+
+    public void takeScreenshot(String path, String fileName) {
+        String randomValue = Faker.instance().code().toString();
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenshot, new File(String.format("%s%s_%s.png", path, fileName, randomValue)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
