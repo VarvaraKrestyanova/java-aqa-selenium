@@ -28,6 +28,7 @@ public class LoginPage {
     }
 
     public InboxPage logIn(String username, String password) {
+        driver.navigate().to("https://mail.yandex.com/");
         driver.findElement(logInBtn).click();
         fillLogInForm(username, password);
         driver.findElement(logInBtnOnForm).click();
@@ -40,10 +41,6 @@ public class LoginPage {
         } catch (NoSuchElementException exception) {
             return false;
         }
-    }
-
-    public void goToUrl(String url) {
-        driver.navigate().to(url);
     }
 
 }

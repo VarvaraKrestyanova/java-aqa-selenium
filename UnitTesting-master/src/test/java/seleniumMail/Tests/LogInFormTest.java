@@ -35,7 +35,6 @@ public class LogInFormTest {
     @Test
     public void logInTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage();
-        loginPage.goToUrl(url);
         loginPage.logIn(user, password);
         Thread.sleep(1000); //Explicit Wait type
         InboxPage inboxPage = new InboxPage();
@@ -52,7 +51,6 @@ public class LogInFormTest {
     @MethodSource
     public void logInWithDifferentUsers(String name, String pwd) {
         LoginPage loginPage = new LoginPage();
-        loginPage.goToUrl(url);
         loginPage.logIn(name, pwd);
         InboxPage inboxPage = new InboxPage();
         inboxPage.waitForUsername();
