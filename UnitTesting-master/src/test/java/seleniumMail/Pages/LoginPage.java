@@ -1,34 +1,84 @@
 package seleniumMail.Pages;
 
-import org.openqa.selenium.By;
+import com.github.javafaker.Faker;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import seleniumMail.Helpers.WebDriverSingleton;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.NoSuchElementException;
 
 public class LoginPage {
 
-    private static By logInBtn = By.cssSelector(".button2_theme_mail-white");
-    private static By loginField = By.cssSelector("#passp-field-login");
-    private static By logInBtnOnForm = By.xpath("//button[@id='passp:sign-in']");
-    private static By passwordField = By.cssSelector("#passp-field-passwd");
+    @FindBy(css = ".button2_theme_mail-white")
+    WebElement logInBtn;
+    @FindBy(xpath = "//span[@class='WelcomePage-tagline']")
+    WebElement welcomeLoginText;
+
+    @FindBy(css = "#passp-field-login")
+    WebElement loginField;
+
+    @FindBy(xpath = "//button[@id='passp:sign-in']")
+    WebElement logInBtnOnForm;
+
+    @FindBy(css = "#passp-field-passwd")
+    WebElement passwordField;
 
     private static WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    public LoginPage() {
+        this.driver = WebDriverSingleton.getInstance().getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     public LoginPage fillLogInForm(String username, String password) {
-        driver.findElement(loginField).sendKeys(username);
-        driver.findElement(logInBtnOnForm).click();
-        driver.findElement(passwordField).sendKeys(password);
-        return new LoginPage(driver);
+        loginField.sendKeys(username);
+        logInBtnOnForm.click();
+        passwordField.sendKeys(password);
+        return new LoginPage();
     }
 
-    public LoginPage logIn(String username, String password) {
-        driver.findElement(logInBtn).click();
+    public InboxPage logIn(String username, String password) {
+        driver.navigate().to("https://mail.yandex.com/");
+        logInBtn.click();
         fillLogInForm(username, password);
-        driver.findElement(logInBtnOnForm).click();
-        return new LoginPage(driver);
+        logInBtnOnForm.click();
+        return new InboxPage();
+    }
+
+    //created additional same method with screenshot so that user has the ability which type of constructor he needs
+    //and not to change the call to the method in other parts of the code
+    public InboxPage logIn(String username, String password, String screenshotPath, String screenshotName) {
+        driver.navigate().to("https://mail.yandex.com/");
+        takeScreenshot(screenshotPath, screenshotName);
+        logInBtn.click();
+        fillLogInForm(username, password);
+        logInBtnOnForm.click();
+        return new InboxPage();
+    }
+
+    public boolean isLoginPageOpened() {
+        try {
+            return welcomeLoginText.isDisplayed();
+        } catch (NoSuchElementException exception) {
+            return false;
+        }
+    }
+
+    public void takeScreenshot(String path, String fileName) {
+        String randomValue = Faker.instance().code().toString();
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenshot, new File(String.format("%s%s_%s.png", path, fileName, randomValue)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
