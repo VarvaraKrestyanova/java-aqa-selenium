@@ -7,6 +7,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import seleniumMail.Helpers.WebDriverSingleton;
 
 import java.io.File;
@@ -33,6 +34,7 @@ public class LoginPage {
 
     public LoginPage() {
         this.driver = WebDriverSingleton.getInstance().getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     public LoginPage fillLogInForm(String username, String password) {
