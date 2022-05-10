@@ -19,13 +19,14 @@ public class YandexMailTest {
     private static String user = PropertiesUtil.get(USERNAME);
     private static String password = PropertiesUtil.get(PASSWORD);
 
+    private static String screenshotPath = PropertiesUtil.get(SCREENSHOT_PATH);
+
     private LoginPage loginPage;
 
     @BeforeEach
     void setup() {
         loginPage = new LoginPage();
     }
-    private static String screenshotPath = PropertiesUtil.get(SCREENSHOT_PATH);
 
     @Test
     public void logInTest() {
