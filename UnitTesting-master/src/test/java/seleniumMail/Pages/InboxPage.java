@@ -30,6 +30,7 @@ public class InboxPage {
 
     public InboxPage() {
         this.driver = WebDriverSingleton.getInstance().getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     public boolean isRightBoxListDisplayed() {
