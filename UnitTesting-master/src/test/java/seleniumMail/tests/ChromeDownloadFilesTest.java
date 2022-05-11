@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import seleniumMail.pages.FileExamplesPage;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,12 +48,13 @@ public class ChromeDownloadFilesTest {
     public void downloadFilesTest() {
         FileExamplesPage fileExamplesPage = new FileExamplesPage(driver);
         fileExamplesPage.downloadFileWithType("DOCX", targetDirectory);
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-docx-file-for-testing.docx"), "File downloading is not successful");
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-doc-file-for-testing-1.doc"), "File downloading is not successful");
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "15-MB-docx-file-download.docx"), "File downloading is not successful");
+        for (String s : Arrays.asList("sample-docx-file-for-testing.docx", "sample-doc-file-for-testing-1.doc", "15-MB-docx-file-download.docx")) {
+            assertTrue(fileExamplesPage.isFileExists(targetDirectory, s), "File downloading is not successful");
+        }
         fileExamplesPage.downloadFileWithType("Excel", targetDirectory);
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-xls-file-for-testing.xls"), "File downloading is not successful");
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-xlsx-file-for-testing.xlsx"), "File downloading is not successful");
+        for (String s : Arrays.asList("sample-xls-file-for-testing.xls", "sample-xlsx-file-for-testing.xlsx")) {
+            assertTrue(fileExamplesPage.isFileExists(targetDirectory, s), "File downloading is not successful");
+        }
         fileExamplesPage.downloadFileWithType("PDF", targetDirectory);
         assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-pdf-file.pdf"), "File downloading is not successful");
     }
