@@ -1,4 +1,4 @@
-package seleniumMail.Pages;
+package seleniumMail.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

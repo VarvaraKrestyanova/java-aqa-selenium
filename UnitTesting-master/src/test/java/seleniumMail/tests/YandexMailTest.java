@@ -1,12 +1,12 @@
-package seleniumMail.Tests;
+package seleniumMail.tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seleniumMail.Helpers.PropertiesUtil;
-import seleniumMail.Helpers.WebDriverSingleton;
-import seleniumMail.Pages.InboxPage;
-import seleniumMail.Pages.LoginPage;
+import seleniumMail.helpers.PropertiesUtil;
+import seleniumMail.helpers.WebDriverSingleton;
+import seleniumMail.pages.InboxPage;
+import seleniumMail.pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

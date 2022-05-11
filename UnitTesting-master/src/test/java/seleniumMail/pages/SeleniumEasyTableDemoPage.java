@@ -1,10 +1,10 @@
-package seleniumMail.Pages;
+package seleniumMail.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import seleniumMail.Helpers.User;
+import seleniumMail.helpers.User;
 
 import java.util.ArrayList;
 import java.util.List;

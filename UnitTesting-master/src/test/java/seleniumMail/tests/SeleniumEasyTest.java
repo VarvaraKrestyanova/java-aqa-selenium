@@ -1,4 +1,4 @@
-package seleniumMail.Tests;
+package seleniumMail.tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,9 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import seleniumMail.Helpers.PropertiesUtil;
-import seleniumMail.Helpers.User;
-import seleniumMail.Pages.*;
+import seleniumMail.helpers.PropertiesUtil;
+import seleniumMail.helpers.User;
+import seleniumMail.pages.*;
 
 import java.util.ArrayList;
 import java.util.List;
