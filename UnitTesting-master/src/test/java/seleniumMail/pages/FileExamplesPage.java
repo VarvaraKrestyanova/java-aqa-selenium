@@ -56,11 +56,6 @@ public class FileExamplesPage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(1500));
         closePopupBlockingBtn.click();
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         wait.until(ExpectedConditions.elementToBeClickable(downloadBtnList.get(0)));
         downloadBtnList.stream().forEach(WebElement::click);
         try {
