@@ -32,9 +32,6 @@ public class ChromeDownloadFilesTest {
         if (!(new File(targetDirectory).exists())) {
             new File(targetDirectory).mkdirs();
         }
-        prefs.put("plugins.plugins_disabled", new String[] {
-                "Chrome PDF Viewer"
-        });
         prefs.put("download.default_directory", targetDirectory);
         prefs.put("plugins.plugins_disabled", new String[] {
                 "Chrome PDF Viewer"
