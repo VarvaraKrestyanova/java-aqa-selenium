@@ -23,16 +23,24 @@ public class ChromeDownloadFilesTest {
     @BeforeEach
     void setup() {
         ChromeDriverManager.getInstance().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
 
         String initialDirectory = System.getProperty("user.dir");
         targetDirectory = initialDirectory + "\\target\\files";
 
+        ChromeOptions chromeOptions = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<String, Object>();
         if (!(new File(targetDirectory).exists())) {
             new File(targetDirectory).mkdirs();
         }
+        prefs.put("plugins.plugins_disabled", new String[] {
+                "Chrome PDF Viewer"
+        });
         prefs.put("download.default_directory", targetDirectory);
+        prefs.put("plugins.plugins_disabled", new String[] {
+                "Chrome PDF Viewer"
+        });
+        prefs.put("plugins.always_open_pdf_externally", true);
+
         chromeOptions.setExperimentalOption("prefs", prefs);
 
         driver = new ChromeDriver(chromeOptions);
@@ -42,16 +50,18 @@ public class ChromeDownloadFilesTest {
     public void downloadFilesTest() {
         FileExamplesPage fileExamplesPage = new FileExamplesPage(driver);
         fileExamplesPage.downloadFileWithType("DOCX", targetDirectory);
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-docx-file-for-testing"));
+        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-docx-file-for-testing.docx"), "File downloading is not successful");
+        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-doc-file-for-testing-1.doc"), "File downloading is not successful");
+        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "15-MB-docx-file-download.docx"), "File downloading is not successful");
         fileExamplesPage.downloadFileWithType("Excel", targetDirectory);
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-xls-file-for-testing"));
+        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-xls-file-for-testing.xls"), "File downloading is not successful");
+        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-xlsx-file-for-testing.xlsx"), "File downloading is not successful");
         fileExamplesPage.downloadFileWithType("PDF", targetDirectory);
-        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-pdf-file"));
+        assertTrue(fileExamplesPage.isFileExists(targetDirectory, "sample-pdf-file.pdf"), "File downloading is not successful");
     }
 
     @AfterEach
     void cleanup() {
-        driver.close();
         driver.quit();
         new File(targetDirectory).delete();
     }

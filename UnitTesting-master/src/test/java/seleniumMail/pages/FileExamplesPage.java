@@ -1,23 +1,18 @@
 package seleniumMail.pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import seleniumMail.helpers.PropertiesUtil;
 
 import java.io.File;
 import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class FileExamplesPage {
 
@@ -51,6 +46,7 @@ public class FileExamplesPage {
      */
     public void downloadFileWithType(String fileType, String filePath) {
         driver.get(filesUrl);
+        driver.manage().window().maximize();
         Actions actions = new Actions(driver);
         actions.moveToElement(sampleBtn).perform();
         actions.moveToElement(documentsDdlValue).perform();
@@ -60,14 +56,18 @@ public class FileExamplesPage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(1500));
         closePopupBlockingBtn.click();
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         wait.until(ExpectedConditions.elementToBeClickable(downloadBtnList.get(0)));
         downloadBtnList.stream().forEach(WebElement::click);
-
-        File file = new File(filePath);
-        FluentWait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(5))
-                .pollingEvery(Duration.ofMillis(1000));
-        wait.until(x -> file.exists());
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isFileExists(String filePath, String fileName) {
