@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import seleniumMail.Helpers.PropertiesUtil;
+import seleniumMail.Helpers.WebDriverSingleton;
 import seleniumMail.Pages.InboxPage;
 import seleniumMail.Pages.LoginPage;
 
@@ -31,21 +32,12 @@ public class LogInFormTest {
     private static String password2 = PropertiesUtil.get(PASSWORD2);
     private static String url = PropertiesUtil.get(YANDEX_MAIL_URL);
 
-    private WebDriver driver;
-
-    @BeforeEach
-    void setup() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
     @Test
     public void logInTest() throws InterruptedException {
-        driver.navigate().to(url);
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.logIn(user, password);
         Thread.sleep(1000); //Explicit Wait type
-        InboxPage inboxPage = new InboxPage(driver);
+        InboxPage inboxPage = new InboxPage();
         assertTrue(inboxPage.isRightBoxListDisplayed(), "Login with correct credentials failed as inbox does not display!");
     }
 
@@ -58,17 +50,16 @@ public class LogInFormTest {
     @ParameterizedTest
     @MethodSource
     public void logInWithDifferentUsers(String name, String pwd) {
-        driver.navigate().to(url);
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.logIn(name, pwd);
-        InboxPage inboxPage = new InboxPage(driver);
+        InboxPage inboxPage = new InboxPage();
         inboxPage.waitForUsername();
         assertTrue(inboxPage.isRightBoxListDisplayed(), "Login with correct credentials failed!");
     }
 
     @AfterEach
     void cleanup() {
-        driver.quit();
+        WebDriverSingleton.getInstance().quitDriver();
     }
 
 }

@@ -2,33 +2,45 @@ package seleniumMail.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import seleniumMail.Helpers.WebDriverSingleton;
+
+import java.util.NoSuchElementException;
 
 public class LoginPage {
 
     private static By logInBtn = By.cssSelector(".button2_theme_mail-white");
+    private static By welcomeLoginText = By.xpath("//span[@class='WelcomePage-tagline']");
     private static By loginField = By.cssSelector("#passp-field-login");
     private static By logInBtnOnForm = By.xpath("//button[@id='passp:sign-in']");
     private static By passwordField = By.cssSelector("#passp-field-passwd");
 
     private static WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    public LoginPage() {
+        this.driver = WebDriverSingleton.getInstance().getDriver();
     }
 
     public LoginPage fillLogInForm(String username, String password) {
         driver.findElement(loginField).sendKeys(username);
         driver.findElement(logInBtnOnForm).click();
         driver.findElement(passwordField).sendKeys(password);
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 
-    public LoginPage logIn(String username, String password) {
+    public InboxPage logIn(String username, String password) {
+        driver.navigate().to("https://mail.yandex.com/");
         driver.findElement(logInBtn).click();
         fillLogInForm(username, password);
         driver.findElement(logInBtnOnForm).click();
-        return new LoginPage(driver);
+        return new InboxPage();
+    }
+
+    public boolean isLoginPageOpened() {
+        try {
+            return driver.findElement(welcomeLoginText).isDisplayed();
+        } catch (NoSuchElementException exception) {
+            return false;
+        }
     }
 
 }
