@@ -1,4 +1,4 @@
-package seleniumMail.Pages;
+package seleniumMail.pages;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

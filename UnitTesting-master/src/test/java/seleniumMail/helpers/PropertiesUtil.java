@@ -1,4 +1,4 @@
-package seleniumMail.Helpers;
+package seleniumMail.helpers;
 
 import java.io.FileReader;
 import java.io.IOException;

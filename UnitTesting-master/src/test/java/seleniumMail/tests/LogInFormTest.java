@@ -1,19 +1,15 @@
-package seleniumMail.Tests;
+package seleniumMail.tests;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import seleniumMail.Helpers.PropertiesUtil;
-import seleniumMail.Helpers.WebDriverSingleton;
-import seleniumMail.Pages.InboxPage;
-import seleniumMail.Pages.LoginPage;
+import seleniumMail.helpers.PropertiesUtil;
+import seleniumMail.helpers.WebDriverSingleton;
+import seleniumMail.pages.InboxPage;
+import seleniumMail.pages.LoginPage;
 
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
