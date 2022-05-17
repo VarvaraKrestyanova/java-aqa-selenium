@@ -1,14 +1,21 @@
-package seleniumMail.Tests;
+package seleniumMail.tests;
 
+import io.qameta.allure.AllureId;
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seleniumMail.Helpers.PropertiesUtil;
-import seleniumMail.Helpers.WebDriverSingleton;
-import seleniumMail.Pages.InboxPage;
-import seleniumMail.Pages.LoginPage;
+import org.junit.jupiter.api.extension.ExtendWith;
+import seleniumMail.helpers.PropertiesUtil;
+import seleniumMail.helpers.WebDriverSingleton;
+import seleniumMail.helpers.reporting.TestListener;
+import seleniumMail.pages.InboxPage;
+import seleniumMail.pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@ExtendWith(TestListener.class)
 
 public class YandexMailTest {
 
@@ -28,12 +35,18 @@ public class YandexMailTest {
         loginPage = new LoginPage();
     }
 
+    @DisplayName("Login Test")
+    @AllureId("Test01")
+    @Description("Login test for Yandex")
     @Test
     public void logInTest() {
         InboxPage inboxPage = loginPage.logIn(user, password, screenshotPath, "testVar");
         assertTrue(inboxPage.isRightBoxListDisplayed(), "Login with correct credentials failed as inbox does not display!");
     }
 
+    @DisplayName("Logout Test")
+    @AllureId("Test02")
+    @Description("Logout test for Yandex")
     @Test
     public void logOutTest() {
         InboxPage inboxPage = loginPage.logIn(user, password);

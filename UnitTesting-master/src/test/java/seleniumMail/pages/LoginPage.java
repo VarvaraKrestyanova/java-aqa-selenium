@@ -1,4 +1,4 @@
-package seleniumMail.Pages;
+package seleniumMail.pages;
 
 import com.github.javafaker.Faker;
 import org.apache.commons.io.FileUtils;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import seleniumMail.Helpers.WebDriverSingleton;
+import seleniumMail.helpers.WebDriverSingleton;
 
 import java.io.File;
 import java.io.IOException;

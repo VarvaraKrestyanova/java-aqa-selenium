@@ -1,4 +1,4 @@
-package seleniumMail.Helpers;
+package seleniumMail.helpers;
 
 public class User {
 
