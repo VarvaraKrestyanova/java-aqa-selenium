@@ -3,6 +3,7 @@ package seleniumMail.pages;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SeleniumEasyAlertDemoPage {
 
@@ -12,10 +13,10 @@ public class SeleniumEasyAlertDemoPage {
     private static By promptBoxResult = By.cssSelector("#prompt-demo");
     private static By jsAlertBtn = By.xpath("//button[@class='btn btn-default']");
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
     private Alert alert;
 
-    public SeleniumEasyAlertDemoPage(WebDriver driver) {
+    public SeleniumEasyAlertDemoPage(RemoteWebDriver driver) {
         this.driver = driver;
     }
 

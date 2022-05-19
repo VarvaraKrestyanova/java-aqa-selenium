@@ -3,6 +3,7 @@ package seleniumMail.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -12,9 +13,9 @@ public class SeleniumEasyBootstrapDemoPage {
     private static By downloadBtn = By.cssSelector("#cricle-btn");
     private static By loadingPercentage = By.xpath("//div[@class='percenttext']");
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
 
-    public SeleniumEasyBootstrapDemoPage(WebDriver driver) {
+    public SeleniumEasyBootstrapDemoPage(RemoteWebDriver driver) {
         this.driver = driver;
     }
 

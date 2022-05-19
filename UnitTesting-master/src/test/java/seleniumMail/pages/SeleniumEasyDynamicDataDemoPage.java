@@ -2,6 +2,7 @@ package seleniumMail.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,9 +14,9 @@ public class SeleniumEasyDynamicDataDemoPage {
     private static By userIcon = By.xpath("//div[@id='loading']//img");
     private static By userName = By.xpath("//*[starts-with(text(), 'First Name : ')]");
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
 
-    public SeleniumEasyDynamicDataDemoPage(WebDriver driver) {
+    public SeleniumEasyDynamicDataDemoPage(RemoteWebDriver driver) {
         this.driver = driver;
     }
 
