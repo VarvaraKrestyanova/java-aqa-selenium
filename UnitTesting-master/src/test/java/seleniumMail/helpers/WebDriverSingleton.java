@@ -28,7 +28,7 @@ public class WebDriverSingleton {
     public WebDriver getDriver() {
         if (driver == null) {
             desiredCapabilities.setBrowserName("chrome");
-            desiredCapabilities.setPlatform(Platform.WIN10);
+            desiredCapabilities.setPlatform(Platform.WINDOWS);
             try {
                 driver = new RemoteWebDriver(new URL("http://192.168.100.25:4444/wd/hub"), desiredCapabilities);
             } catch (MalformedURLException e) {
