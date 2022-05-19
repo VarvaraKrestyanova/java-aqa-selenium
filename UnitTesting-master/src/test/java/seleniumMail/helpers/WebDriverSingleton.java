@@ -1,14 +1,20 @@
 package seleniumMail.helpers;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
 
     private WebDriver driver;
     private static WebDriverSingleton instance;
+    private DesiredCapabilities desiredCapabilities;
 
     private WebDriverSingleton() {}
 
@@ -21,7 +27,13 @@ public class WebDriverSingleton {
 
     public WebDriver getDriver() {
         if (driver == null) {
-            driver = new ChromeDriver();
+            desiredCapabilities.setBrowserName("chrome");
+            desiredCapabilities.setPlatform(Platform.WIN10);
+            try {
+                driver = new RemoteWebDriver(new URL("http://192.168.100.25:4444/wd/hub"), desiredCapabilities);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
         return driver;
