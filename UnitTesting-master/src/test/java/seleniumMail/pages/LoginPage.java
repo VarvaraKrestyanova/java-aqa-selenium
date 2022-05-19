@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import seleniumMail.helpers.WebDriverSingleton;
@@ -30,7 +31,7 @@ public class LoginPage {
     @FindBy(css = "#passp-field-passwd")
     WebElement passwordField;
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
 
     public LoginPage() {
         this.driver = WebDriverSingleton.getInstance().getDriver();
