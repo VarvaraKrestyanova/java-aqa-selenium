@@ -3,6 +3,7 @@ package seleniumMail.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ public class SeleniumEasyDropdownDemoPage {
     private static By state = By.xpath("//select[@id='multi-select']/option");
     private static By displayedTextAfterSelect = By.xpath("//p[@class='getall-selected']");
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
     private Select selector;
 
-    public SeleniumEasyDropdownDemoPage(WebDriver driver) {
+    public SeleniumEasyDropdownDemoPage(RemoteWebDriver driver) {
         this.driver = driver;
     }
 

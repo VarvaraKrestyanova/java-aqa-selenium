@@ -4,12 +4,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import seleniumMail.helpers.PropertiesUtil;
 import seleniumMail.helpers.User;
 import seleniumMail.pages.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -29,11 +34,14 @@ public class SeleniumEasyTest {
     private static String bootstrapDemoUrl = PropertiesUtil.get(SELENIUM_EASY_BOOTSTRAP_URL);
     private static String tableDemoUrl = PropertiesUtil.get(SELENIUM_EASY_TABLE_URL);
 
-    private WebDriver driver;
+    private RemoteWebDriver driver;
 
     @BeforeEach
-    void setup() {
-        driver = new ChromeDriver();
+    void setup() throws MalformedURLException {
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setBrowserName("chrome");
+        desiredCapabilities.setPlatform(Platform.WINDOWS);
+        driver = new RemoteWebDriver(new URL("http://192.168.100.25:4444/wd/hub"), desiredCapabilities);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 

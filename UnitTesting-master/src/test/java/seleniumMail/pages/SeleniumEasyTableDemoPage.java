@@ -3,6 +3,7 @@ package seleniumMail.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import seleniumMail.helpers.User;
 
@@ -15,9 +16,9 @@ public class SeleniumEasyTableDemoPage {
     private static By tableRow = By.xpath("//tbody//tr");
     private static By nextPaginationButtons = By.xpath("//a[@class= 'paginate_button ']");
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
 
-    public SeleniumEasyTableDemoPage(WebDriver driver) {
+    public SeleniumEasyTableDemoPage(RemoteWebDriver driver) {
         this.driver = driver;
     }
 

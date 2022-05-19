@@ -2,6 +2,7 @@ package seleniumMail.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,7 +26,7 @@ public class InboxPage {
     @FindBy(xpath = "//span[.='Log out']")
     WebElement logoutBtn;
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
 
     public InboxPage() {
         this.driver = WebDriverSingleton.getInstance().getDriver();
