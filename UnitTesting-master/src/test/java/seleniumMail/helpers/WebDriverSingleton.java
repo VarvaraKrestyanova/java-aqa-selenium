@@ -1,12 +1,14 @@
 package seleniumMail.helpers;
 
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
@@ -14,6 +16,12 @@ public class WebDriverSingleton {
     private RemoteWebDriver driver;
     private static WebDriverSingleton instance;
     private DesiredCapabilities desiredCapabilities;
+
+    private static final String  SAURCELABS_USERNAME = "saucelabs.username";
+    private static final String SAURCELABS_KEY = "saucelabs.key";
+    private static final String saucelabsUsername = PropertiesUtil.get(SAURCELABS_USERNAME);
+    private static final String saucelabsKey = PropertiesUtil.get(SAURCELABS_KEY);
+    public static final String saucelabsURL = "https://" + saucelabsUsername + ":" + saucelabsKey + "@ondemand.saucelabs.com:443/wd/hub";
 
     private WebDriverSingleton() {}
 
@@ -27,11 +35,14 @@ public class WebDriverSingleton {
 
     public RemoteWebDriver getDriver() {
         if (driver == null) {
-            desiredCapabilities = new DesiredCapabilities();
-            desiredCapabilities.setBrowserName("chrome");
-            desiredCapabilities.setPlatform(Platform.WINDOWS);
+            FirefoxOptions browserOptions = new FirefoxOptions();
+            browserOptions.setPlatformName("Windows 8.1");
+            browserOptions.setBrowserVersion("99");
+            Map<String, Object> sauceOptions = new HashMap<>();
+            browserOptions.setCapability("sauce:options", sauceOptions);
+
             try {
-                driver = new RemoteWebDriver(new URL("http://192.168.100.25:4444/wd/hub"), desiredCapabilities);
+                driver = new RemoteWebDriver(new URL(saucelabsURL), browserOptions);
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
