@@ -34,14 +34,11 @@ public class WebDriverSingleton {
 
     public RemoteWebDriver getDriver() {
         if (driver == null) {
-            desiredCapabilities = new DesiredCapabilities();
             EdgeOptions browserOptions = new EdgeOptions();
             browserOptions.setPlatformName("Windows 10");
             browserOptions.setBrowserVersion("latest");
             Map<String, Object> sauceOptions = new HashMap<>();
             browserOptions.setCapability("sauce:options", sauceOptions);
-            desiredCapabilities.setCapability("platform", "Windows 10");
-            desiredCapabilities.setCapability("version", "latest");
 
             try {
                 driver = new RemoteWebDriver(new URL(saucelabsURL), browserOptions);
