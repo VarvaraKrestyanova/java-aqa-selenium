@@ -1,6 +1,7 @@
 package seleniumMail.helpers;
 
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -35,12 +36,12 @@ public class WebDriverSingleton {
     public RemoteWebDriver getDriver() {
         if (driver == null) {
             desiredCapabilities = new DesiredCapabilities();
-            EdgeOptions browserOptions = new EdgeOptions();
-            browserOptions.setPlatformName("Windows 10");
+            FirefoxOptions browserOptions = new FirefoxOptions();
+            browserOptions.setPlatformName("Windows 8.1");
             browserOptions.setBrowserVersion("latest");
             Map<String, Object> sauceOptions = new HashMap<>();
             browserOptions.setCapability("sauce:options", sauceOptions);
-            desiredCapabilities.setCapability("platform", "Windows 10");
+            desiredCapabilities.setCapability("platform", "Windows 8.1");
             desiredCapabilities.setCapability("version", "latest");
 
             try {
