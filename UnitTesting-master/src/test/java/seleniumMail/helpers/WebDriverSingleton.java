@@ -38,11 +38,11 @@ public class WebDriverSingleton {
             desiredCapabilities = new DesiredCapabilities();
             FirefoxOptions browserOptions = new FirefoxOptions();
             browserOptions.setPlatformName("Windows 8.1");
-            browserOptions.setBrowserVersion("latest");
+            browserOptions.setBrowserVersion("99");
             Map<String, Object> sauceOptions = new HashMap<>();
             browserOptions.setCapability("sauce:options", sauceOptions);
             desiredCapabilities.setCapability("platform", "Windows 8.1");
-            desiredCapabilities.setCapability("version", "latest");
+            desiredCapabilities.setCapability("version", "99");
 
             try {
                 driver = new RemoteWebDriver(new URL(saucelabsURL), browserOptions);
